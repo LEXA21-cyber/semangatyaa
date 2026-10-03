@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Untuk Kamu, Matahariku</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,500&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--night:#0a1030;--indigo:#1a1646;--plum:#2d1b4e;--sun:#ffd23f;--glow:#ffe68a;--ink:#f4efe0;--soft:#c9c3e6}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--night);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;overflow-x:hidden;line-height:1.7}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+#sky{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,#070b25 0%,var(--night) 30%,var(--indigo) 65%,var(--plum) 100%)}
+.star{position:absolute;border-radius:50%;background:#fff;animation:tw var(--d) ease-in-out infinite;animation-delay:var(--l)}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+.shoot{position:absolute;height:2px;width:130px;background:linear-gradient(90deg,transparent,#fff);border-radius:2px;opacity:0;rotate:-35deg;filter:drop-shadow(0 0 6px #fff);animation:shoot 1.4s ease-out forwards}
+@keyframes shoot{0%{opacity:0;translate:0 0}10%{opacity:1}100%{opacity:0;translate:-420px 300px}}
+#moon{position:absolute;top:6%;right:8%;width:clamp(70px,14vw,120px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe6,#f3e7b3 60%,#e0d08a);box-shadow:0 0 40px 12px rgba(255,236,160,.35),0 0 120px 40px rgba(255,230,140,.18);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{box-shadow:0 0 55px 16px rgba(255,236,160,.45),0 0 140px 50px rgba(255,230,140,.22)}}
+/* kebun */
+.field{position:fixed;left:0;right:0;bottom:0;height:52vh;pointer-events:none;overflow:hidden;z-index:1}
+.row{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:center;overflow:visible}
+#f1{height:46vh;z-index:1;opacity:.55;bottom:2vh;filter:brightness(.6)}
+#f2{height:38vh;z-index:2;opacity:.85;bottom:0;filter:brightness(.8)}
+#f3{height:30vh;z-index:3;bottom:-2vh}
+.fl{flex:0 0 auto;transform-origin:50% 100%;animation:sway var(--s) ease-in-out infinite;animation-delay:var(--o)}
+.fl svg{display:block;width:100%;height:100%}
+.fl .head{transform-origin:50px 50px;transform:rotate(var(--t))}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+#ground{position:fixed;left:0;right:0;bottom:0;height:9vh;z-index:4;background:linear-gradient(0deg,#07061a,transparent);pointer-events:none}
+main{position:relative;z-index:5;max-width:42rem;margin:0 auto;padding:11vh 1.25rem calc(40vh + 2rem)}
+.glass{background:rgba(26,22,70,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,214,90,.16);border-radius:1.5rem;padding:1.6rem}
+.block{margin-top:2.2rem}
+.rise{opacity:0;transform:translateY(22px);transition:opacity 1.6s ease,transform 1.6s ease}
+.rise.in{opacity:1;transform:none}
+h1{font-size:clamp(2.6rem,9vw,3.8rem);line-height:1.1;margin:.8rem 0 0;color:var(--glow);text-shadow:0 0 30px rgba(255,210,63,.35);font-weight:500}
+.lead{font-size:clamp(1.3rem,4.5vw,1.65rem);line-height:1.5}
+.btn{background:linear-gradient(135deg,var(--sun),#ffb627);color:#2a1a05;font:600 1rem 'Nunito',sans-serif;border-radius:999px;padding:.95rem 1.6rem;border:0;cursor:pointer;box-shadow:0 0 28px rgba(255,210,63,.35);transition:transform .3s,box-shadow .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(255,210,63,.55)}
+.btn:focus-visible,.mini:focus-visible{outline:2px solid var(--glow);outline-offset:3px}
+.mini{position:fixed;top:.8rem;left:.8rem;z-index:20;background:rgba(26,22,70,.75);color:var(--ink);border:1px solid rgba(255,214,90,.25);border-radius:999px;padding:.5rem .9rem;font:.85rem 'Nunito',sans-serif;cursor:pointer;backdrop-filter:blur(8px)}
+/* foto */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.4rem;margin-top:1.4rem}
+.polaroid{background:#f7f1e1;color:#3a2a4a;padding:.6rem .6rem 1rem;border-radius:4px;box-shadow:0 8px 30px rgba(0,0,0,.45),0 0 24px rgba(255,210,63,.12);rotate:var(--r);transition:rotate .5s,transform .5s}
+.polaroid:hover{rotate:0deg;transform:scale(1.04)}
+.polaroid .ph{aspect-ratio:4/5;background:linear-gradient(135deg,#2d1b4e,#1a1646);border-radius:2px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--glow);font-size:.85rem;text-align:center;cursor:pointer}
+.polaroid img{width:100%;height:100%;object-fit:cover;display:block}
+.polaroid p{margin:.6rem 0 0;text-align:center;font:italic 1.05rem 'Cormorant Garamond',serif;line-height:1.3}
+#toast{transition:opacity .8s,transform .8s;margin-top:1.4rem}
+#toast.hide{opacity:0;transform:translateY(10px)}
+.petal{position:fixed;top:-30px;z-index:30;pointer-events:none;width:14px;height:26px;border-radius:50%/70% 70% 30% 30%;background:linear-gradient(180deg,#ffe27a,#ffb300);animation:fall var(--f) linear forwards;box-shadow:0 0 8px rgba(255,210,63,.6)}
+@keyframes fall{to{transform:translate(var(--x),110vh) rotate(var(--r))}}
+@media (prefers-reduced-motion:reduce){.fl,.star,#moon{animation:none}.shoot{display:none}.rise{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="sky"><div id="moon"></div></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <radialGradient id="cg"><stop offset="0" stop-color="#6b3f1a"/><stop offset="1" stop-color="#2a1608"/></radialGradient>
+</defs></svg>
+
+<div class="field"><div class="row" id="f1"></div><div class="row" id="f2"></div><div class="row" id="f3"></div></div>
+<div id="ground"></div>
+
+<button class="mini" id="snd" aria-pressed="false">🎵 Musik: mati</button>
+
+<main>
+  <section class="rise" style="text-align:center">
+    <p style="color:var(--soft);margin:0">halo, kamu</p>
+    <h1 class="serif">Kamu luar biasa, tahu nggak?</h1>
+  </section>
+
+  <section class="glass block rise">
+    <p class="serif lead" style="margin:0">Aku lihat semua usahamu. Yang kelihatan maupun yang diam-diam kamu pikul sendiri.</p>
+    <p style="color:var(--soft);margin:1rem 0 0">Kamu lebih kuat dari yang kamu kira, lebih berharga dari yang kamu rasa, dan setiap langkah kecilmu hari ini itu berarti. Kamu bukan sekadar "bertahan". Kamu tumbuh, pelan tapi pasti, seperti bunga yang terus menghadap cahaya. Aku bangga banget sama kamu.</p>
+  </section>
+
+  <section class="block rise" style="text-align:center;padding:1.8rem 1.4rem;border-radius:1.5rem;background:linear-gradient(160deg,rgba(45,27,78,.8),rgba(26,22,70,.65));border:1px solid rgba(255,214,90,.4);box-shadow:0 0 50px rgba(255,210,63,.12)">
+    <div style="font-size:1.8rem" aria-hidden="true">🌻 ✦ 🌻</div>
+    <p class="serif lead" style="font-style:italic;color:var(--glow);margin:1rem 0 0">Bunga matahari selalu mencari cahaya matahari. Namun di malam hari ketika tidak ada matahari, mereka saling berhadapan untuk berbagi energi dan menerangi satu sama lain.</p>
+    <p class="serif lead" style="margin:1rem 0 0">Sama seperti kita, saat dunia sedang gelap dan kamu merasa lelah, aku ada di sini untuk menerangi dan berbagi energi denganmu.</p>
+  </section>
+
+  <section class="glass block rise" style="text-align:center">
+    <p class="serif lead" style="margin:0">Kamu selalu ada di pikiranku 💛</p>
+    <p style="color:var(--soft);margin:.6rem 0 0">Ini beberapa potongan tentang kamu yang selalu bikin aku senyum.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="block rise" style="text-align:center">
+    <button id="hug" class="btn">Klik saat kamu butuh pelukan / semangat tambahan</button>
+    <div id="toast" class="glass hide serif lead" aria-live="polite"></div>
+  </section>
+
+  <section class="glass block rise" style="text-align:center">
+    <p class="serif lead" style="margin:0">Dan sekarang, istirahat dulu ya, sayang 🌙</p>
+    <p style="color:var(--soft);margin:.8rem 0 0">Kamu sudah melakukan yang terbaik hari ini. Biar malam yang menjagamu, dan biar aku yang menjaga senyummu. Selamat tidur, mimpi indah, sampai ketemu besok.</p>
+  </section>
+</main>
+
+<script>
+/* ============ ATUR FOTO DI SINI ============
+   Taruh foto di folder yang SAMA dengan file HTML ini, lalu isi namanya.
+   Contoh: {src:"foto1.jpg", caption:"Senyum favoritku"}
+   Kalau dikosongkan, muncul bingkai kosong yang bisa diklik untuk memilih foto (hanya untuk preview). */
+const PHOTOS = [
+  // {src:"foto1.jpg", caption:"Senyum favoritku"},
+  // {src:"foto2.jpg", caption:"Hari yang selalu kuingat"},
+  // {src:"foto3.jpg", caption:"Kamu, cahayaku"},
+];
+/* =========================================== */
+
+const sky=document.getElementById('sky');
+for(let i=0;i<120;i++){const s=document.createElement('div');s.className='star';const z=Math.random()*2.2+.8;
+  s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*70}%;width:${z}px;height:${z}px;--d:${2+Math.random()*4}s;--l:${-Math.random()*5}s`;sky.appendChild(s)}
+function shoot(){const s=document.createElement('div');s.className='shoot';s.style.left=(40+Math.random()*55)+'%';s.style.top=(Math.random()*35)+'%';
+  sky.appendChild(s);setTimeout(()=>s.remove(),1500);setTimeout(shoot,4000+Math.random()*6000)}
+setTimeout(shoot,2000);
+
+/* Kebun bunga matahari */
+let petals='';
+for(let i=0;i<18;i++)petals+=`<ellipse cx="50" cy="26" rx="6.5" ry="16" fill="#ffc21a" transform="rotate(${i*20} 50 50)"/>`;
+for(let i=0;i<18;i++)petals+=`<ellipse cx="50" cy="30" rx="6" ry="14" fill="#ffd93d" transform="rotate(${i*20+10} 50 50)"/>`;
+const head=`<g class="head">${petals}<circle cx="50" cy="50" r="17" fill="url(#cg)"/><circle cx="50" cy="50" r="9" fill="#5a3418" opacity=".55"/></g>`;
+const flowerSVG=`<svg viewBox="0 0 100 220"><path d="M50 66 C46 120 54 170 50 220" stroke="#1d5a42" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M50 160 C30 148 20 152 14 160 C26 170 40 168 50 160Z" fill="#23704f"/><path d="M50 135 C70 123 82 127 88 135 C76 145 62 143 50 135Z" fill="#1d5a42"/>${head}</svg>`;
+function fillRow(id,hMin,hMax,gap,spread){
+  const row=document.getElementById(id);const rowH=row.getBoundingClientRect().height;
+  const w=innerWidth,n=Math.ceil(w/(rowH*gap))+4;
+  for(let i=0;i<n;i++){
+    const f=document.createElement('div');f.className='fl';
+    const h=rowH*(hMin+Math.random()*(hMax-hMin));
+    const side=(i/n<.5?1:-1);
+    f.style.cssText=`height:${h}px;width:${h*.46}px;margin:0 ${-h*.12}px;--s:${3.5+Math.random()*3.5}s;--o:${-Math.random()*6}s;--t:${side*(6+Math.random()*spread)}deg`;
+    f.innerHTML=flowerSVG;row.appendChild(f);
+  }
+}
+const small=innerWidth<640;
+fillRow('f1',.7,1,.15,16);
+fillRow('f2',.7,1,.16,18);
+fillRow('f3',.75,1,.17,22);
+
+/* Foto: otomatis cari foto1, foto2, ... (jpg/jpeg/png/webp/jfif) di folder yang sama */
+const g=document.getElementById('gallery');
+const CAPS=["Senyum favoritku","Kamu, cahayaku","Hari yang kuingat","Selalu di pikiranku","Cantikmu apa adanya","Matahariku"];
+const EXTS=['jpg','jpeg','png','webp','jfif','JPG','JPEG','PNG','JFIF','WEBP'];
+function probeImg(base){return new Promise(res=>{let i=0;(function next(){if(i>=EXTS.length)return res(null);
+  const im=new Image(),src=base+'.'+EXTS[i++];im.onload=()=>res(src);im.onerror=next;im.src=src})()})}
+function addPolaroid(p,i){
+  const d=document.createElement('figure');d.className='polaroid';d.style.margin='0';d.style.setProperty('--r',((i%2?1:-1)*(1.5+i%3))+'deg');
+  if(p.src){d.innerHTML=`<div class="ph"><img src="${p.src}" alt="${p.caption||''}"></div><p>${p.caption||''}</p>`}
+  else{d.innerHTML=`<label class="ph" style="width:100%;height:100%"><span>＋ Pilih foto<br>(preview)</span><input type="file" accept="image/*" hidden></label><p>${p.caption}</p>`;
+    d.querySelector('input').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();
+      r.onload=()=>{d.querySelector('.ph').innerHTML=`<img src="${r.result}" alt="">`};r.readAsDataURL(f)})}
+  g.appendChild(d);
+}
+(async()=>{
+  let items=PHOTOS.slice();
+  if(!items.length){for(let n=1;n<=6;n++){const src=await probeImg('foto'+n);if(src)items.push({src,caption:CAPS[n-1]})}}
+  if(!items.length)items=[{caption:CAPS[0]},{caption:CAPS[1]},{caption:CAPS[2]}];
+  items.forEach(addPolaroid);
+})();
+
+/* Muncul halus saat di-scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rise').forEach((el,i)=>{el.style.transitionDelay=(i<2?i*.5:0)+'s';io.observe(el)});
+
+/* Pesan acak + kelopak */
+const msgs=[
+ "Kamu itu kuat, jauh lebih kuat dari yang kamu sadari. Aku percaya banget sama kamu.",
+ "Apa pun yang kamu kejar, aku yakin kamu bisa. Pelan-pelan juga nggak apa-apa, yang penting kamu terus melangkah.",
+ "Kamu sudah sejauh ini, dan itu bukti kamu hebat. Jangan lupa bangga sama dirimu sendiri.",
+ "Kamu nggak sendirian. Aku di sini, di pihakmu, apa pun yang terjadi.",
+ "Kamu berharga bukan karena apa yang kamu capai, tapi karena kamu adalah kamu.",
+ "Senyummu itu cahaya buat banyak orang, terutama buat aku. Jangan pernah ragu kamu itu istimewa.",
+ "Hal-hal baik lagi dalam perjalanan menuju kamu. Kamu pantas mendapatkannya.",
+ "Seperti bunga matahari, kamu selalu menemukan cara untuk bersinar lagi. Aku sudah lihat itu berkali-kali."
+];
+let last=-1;const toast=document.getElementById('toast');
+document.getElementById('hug').addEventListener('click',()=>{
+  let i;do{i=Math.floor(Math.random()*msgs.length)}while(i===last);last=i;
+  toast.classList.add('hide');setTimeout(()=>{toast.textContent='🌻 '+msgs[i];toast.classList.remove('hide')},350);
+  for(let k=0;k<50;k++)setTimeout(petal,k*70);
+  setTimeout(()=>toast.scrollIntoView({behavior:'smooth',block:'center'}),400);
+});
+function petal(){const p=document.createElement('div');p.className='petal';p.style.left=Math.random()*100+'vw';
+  p.style.setProperty('--f',(5+Math.random()*4)+'s');p.style.setProperty('--x',(Math.random()*160-80)+'px');p.style.setProperty('--r',(Math.random()*720-360)+'deg');
+  document.body.appendChild(p);setTimeout(()=>p.remove(),9500)}
+
+/* Suara malam (sintesis WebAudio) */
+let ctx,master,on=false,cricket;const btn=document.getElementById('snd');
+/* Musik: otomatis cari music.mp3 / music.m4a / music.wav / dll di folder yang sama.
+   Kalau namanya beda, isi di sini, contoh: const MUSIC = "lagu-kita.mp3"; */
+const MUSIC = "";
+const AEXTS=['mp3','m4a','wav','ogg','opus','aac','mp4','MP3','M4A'];
+function probeAudio(){
+  const list=(MUSIC?[MUSIC]:[]).concat(AEXTS.map(e=>'music.'+e));
+  return new Promise(res=>{let i=0;(function next(){if(i>=list.length)return res(null);
+    const a=new Audio();a.preload='auto';a.onloadedmetadata=()=>res(a);a.onerror=next;a.src=list[i++]})()});
+}
+let audioEl=null,audioTried=false;
+btn.addEventListener('click',async()=>{
+  if(!audioTried){audioTried=true;audioEl=await probeAudio();if(audioEl){audioEl.loop=true;audioEl.volume=.6}}
+  if(audioEl){
+    on=!on;
+    if(on)audioEl.play().catch(()=>{});else audioEl.pause();
+    btn.textContent=on?'🎵 Musik: nyala':'🎵 Musik: mati';btn.setAttribute('aria-pressed',on);
+    return;
+  }
+  if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
+    [110,164.81,220,277.18,329.63].forEach((f,i)=>{const o=ctx.createOscillator(),gn=ctx.createGain();o.type='sine';o.frequency.value=f;gn.gain.value=.05/(1+i*.3);
+      const l=ctx.createOscillator(),lg=ctx.createGain();l.frequency.value=.07+i*.03;lg.gain.value=.02;l.connect(lg).connect(gn.gain);o.connect(gn).connect(master);o.start();l.start()})}
+  on=!on;ctx.resume();master.gain.cancelScheduledValues(ctx.currentTime);master.gain.linearRampToValueAtTime(on?1:0,ctx.currentTime+2);
+  btn.textContent=on?'🎵 Musik: nyala':'🎵 Musik: mati';btn.setAttribute('aria-pressed',on);
+  clearInterval(cricket);if(on)cricket=setInterval(chirp,1800)});
+function chirp(){if(!on)return;for(let k=0;k<3;k++){const t=ctx.currentTime+k*.09,o=ctx.createOscillator(),gn=ctx.createGain();
+  o.type='sine';o.frequency.value=4300;gn.gain.setValueAtTime(0,t);gn.gain.linearRampToValueAtTime(.012,t+.02);gn.gain.linearRampToValueAtTime(0,t+.07);
+  o.connect(gn).connect(master);o.start(t);o.stop(t+.08)}}
+</script>
+</body>
+</html>
